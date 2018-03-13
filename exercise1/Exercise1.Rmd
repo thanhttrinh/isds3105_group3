@@ -9,12 +9,16 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
 ```
 
+```{r}
+library(tidyverse)
+```
+
 ##Exercise
 
 Use the `map_data("world")` and the dataset on [alcohol consumption in the world](https://github.com/fivethirtyeight/data/blob/master/alcohol-consumption)
 
 ```{r}
-dt <- read_csv('https://raw.githubusercontent.com/fivethirtyeight/data/master/alcohol-consumption/drinks.csv')
+dt <- read.csv('https://raw.githubusercontent.com/fivethirtyeight/data/master/alcohol-consumption/drinks.csv')
 ```
 
 Work within your group to create four maps, one for each variable (`beer_servings`, `spirit_servings`, `wine_servings` and `total_litres_of_pure_alcohol`). To streamline the collaboration on Github I recommend following these steps:
@@ -26,3 +30,12 @@ Work within your group to create four maps, one for each variable (`beer_serving
 3. Everyone else pulls the repo. Now everyone should see on their machine a local copy of the `exercise` repo containing the .Rmd.
 
 4. Split the work between the members of your group. Once you are have finished, push your commit. For simplicity, avoid pushing simultaneously from multiple masters to the same origin. Solve the conflicts when needed. 
+
+```{r}
+world <- map_data("world")
+ggplot(data = world) + 
+  geom_polygon(aes(x = long, y = lat, group = group), color = "white") + 
+  coord_fixed(1.3) +
+  guides(fill=F) 
+```
+
