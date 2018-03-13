@@ -1,0 +1,28 @@
+---
+title: "Exercise1"
+author: "Thanh Trinh"
+date: "March 13, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+##Exercise
+
+Use the `map_data("world")` and the dataset on [alcohol consumption in the world](https://github.com/fivethirtyeight/data/blob/master/alcohol-consumption)
+
+```{r}
+dt <- read_csv('https://raw.githubusercontent.com/fivethirtyeight/data/master/alcohol-consumption/drinks.csv')
+```
+
+Work within your group to create four maps, one for each variable (`beer_servings`, `spirit_servings`, `wine_servings` and `total_litres_of_pure_alcohol`). To streamline the collaboration on Github I recommend following these steps:
+
+1. **One** member creates a subfolder called `exercises` in the main group repo. The repo should contain a .Rmd called "exercise1".
+
+2. Add the code for `exercise1` for downloading the dataset (that part is going to be the same for everyone). Push the repo.
+
+3. Everyone else pulls the repo. Now everyone should see on their machine a local copy of the `exercise` repo containing the .Rmd.
+
+4. Split the work between the members of your group. Once you are have finished, push your commit. For simplicity, avoid pushing simultaneously from multiple masters to the same origin. Solve the conflicts when needed. 
