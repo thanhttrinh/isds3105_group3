@@ -1,6 +1,6 @@
 ---
 title: "Exercise1"
-author: "Thanh Trinh"
+author: "Thanh Trinh, B Dean"
 date: "March 13, 2018"
 output: html_document
 ---
