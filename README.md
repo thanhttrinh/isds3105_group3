@@ -1,7 +1,7 @@
 # ISDS 3105 - Group 3 
 Jason Williams
 
-Tania Trinh
+Thanh Trinh
 
 Buford Dean
 
