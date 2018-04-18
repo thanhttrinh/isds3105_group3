@@ -1,8 +1,18 @@
-# isds3105_group3  
-Group 3's repo for ISDS 3105  
+# ISDS 3105 - Group 3 
+Jason Williams
+Tania Trinh
+Buford Dean
 
-Project Topic/Question:  
-Does the number of internships/co-ops, whether related or unrelated to his/her major, of a graduate make it easier to find a full-time job and does it affect the starting salary?  
+## Research Questions  
+We are interested in which variables affect the starting salary for an initial job offer the most. We have developed the following questions that we will explore:
+
+- How much does having an internship affect your starting salary
+- Does it matter if the internship is related to the respective major?
+- How much does one internship differ from many? 
+
+
+TODO: ADD SCREENSHOTS OF GRAPHS/GOOD INFORMATION WE FIND AND WHAT WE DID WITH IT. 
+
 
 Project Artifact:  
 HTML
