@@ -1,6 +1,8 @@
 # ISDS 3105 - Group 3 
 Jason Williams
+
 Tania Trinh
+
 Buford Dean
 
 ## Research Questions  
