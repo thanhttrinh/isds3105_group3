@@ -63,3 +63,20 @@ totalAmounts <- internship_amounts %>% group_by(count) %>% summarise(countCOUNT=
 ggplot(totalAmounts) + geom_col(aes(x = count, y = countCOUNT, fill = count)) + ggtitle("Total Amount of Internships by Graduation") + labs(x="Number of internships", y = "Amount of Students")
 ```
 
+```{r}
+#get salary from students with internships
+curPos <- tbl(conStudent, 'currentPosition')
+employ <- tbl(conStudent, 'employment')
+full_time <- tbl(conStudent, 'fulltime')
+
+#holds students with AND without internships
+currentPos <- internship_amounts %>% right_join(curPos, by = 'graduationId', copy = T) %>% select(graduationId, count, idCurrentPosition)
+
+currentPos2 <- internship_amounts %>% right_join(curPos, by = 'graduationId', copy = T) %>% select(graduationId, count, idCurrentPosition) %>% filter(!is.na(count))
+
+employment <- currentPos %>% left_join(employ, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(count))
+
+internSalary <- employment %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(count)) %>% select(graduationId, count, salary)
+```
+
+
