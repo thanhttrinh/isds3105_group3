@@ -60,9 +60,11 @@ totalAmounts <- internship_amounts %>% group_by(count) %>% summarise(countCOUNT=
 
 ## How many internships did most students have? 
 ```{r}
-ggplot(totalAmounts) + geom_col(aes(x = count, y = countCOUNT, fill = count)) + ggtitle("Total Amount of Internships by Graduation") + labs(x="Number of internships", y = "Amount of Students")
+ggplot(totalAmounts) + geom_col(aes(x = count, y = countCOUNT, fill = factor(count))) + ggtitle("Total Amount of Internships by Graduation") + labs(x="Number of internships", y = "Amount of Students") + scale_size(guide = "none") 
 ```
 
+
+## How does the salary differr between each amount of internships?
 ```{r}
 #get salary from students with internships
 curPos <- tbl(conStudent, 'currentPosition')
@@ -78,5 +80,3 @@ employment <- currentPos %>% left_join(employ, by = 'idCurrentPosition', copy = 
 
 internSalary <- employment %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(count)) %>% select(graduationId, count, salary)
 ```
-
-
