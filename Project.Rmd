@@ -53,4 +53,13 @@ internships <- internships %>% filter(hourlyWage <= 45) %>% select(internshipId,
 # Counts num of internships for a given student
 internship_amounts <- internships %>% as.data.frame %>% group_by(graduationId) %>% summarise(count = n()) %>% arrange(graduationId)
 
+# This variable holds the amount of students with 1 internship, 2 internships, or 3 internships (2408, 630, and 141 respectively)
+totalAmounts <- internship_amounts %>% group_by(count) %>% summarise(countCOUNT=n())
 ```
+
+
+## How many internships did most students have? 
+```{r}
+ggplot(totalAmounts) + geom_col(aes(x = count, y = countCOUNT, fill = count)) + ggtitle("Total Amount of Internships by Graduation") + labs(x="Number of internships", y = "Amount of Students")
+```
+
