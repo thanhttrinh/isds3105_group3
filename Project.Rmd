@@ -51,6 +51,6 @@ internships <- internships %>% filter(hourlyWage <= 45) %>% select(internshipId,
 
 
 # Counts num of internships for a given student
-internship_amounts <- internships %>% as.data.frame %>% group_by(graduationId) %>% summarise(count = n()) %>% arrange(graduationId
+internship_amounts <- internships %>% as.data.frame %>% group_by(graduationId) %>% summarise(count = n()) %>% arrange(graduationId)
 
 ```
