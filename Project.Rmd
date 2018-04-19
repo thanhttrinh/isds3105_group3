@@ -39,6 +39,8 @@ wage <- tbl(conStudent, 'paidInternship')
 internships <- internships %>% left_join(wage) %>% filter(!is.na(hourlyWage))
 
 internships <- internships %>% left_join(graduates) %>% arrange(graduationId)
+
+
 ```
 
 We have realized that there is a large sum of "dirty" data, and will thus do some cleanup. Some hourly wages appear to be above $40-$45, which seems very unreasonable for even out of state internships in high cost-of-living states such as California. That being said, I will filter out the results greater than $40/h. 
@@ -48,8 +50,7 @@ We have realized that there is a large sum of "dirty" data, and will thus do som
 internships <- internships %>% filter(hourlyWage <= 45) %>% select(internshipId, jobTitle, graduationId, weeklyCompensation, hourlyWage)
 
 
-# TODO: add column for n, where n = number of internships for a given student denoted by 'graduationId'
-internships <- internships %>% group_by(graduationId) %>% mutate(count = add_tally())
-
+# Counts num of internships for a given student
+internship_amounts <- internships %>% as.data.frame %>% group_by(graduationId) %>% summarise(count = n()) %>% arrange(graduationId
 
 ```
