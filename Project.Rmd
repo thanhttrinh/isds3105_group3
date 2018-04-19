@@ -49,7 +49,7 @@ internships <- internships %>% filter(hourlyWage <= 45) %>% select(internshipId,
 
 
 # TODO: add column for n, where n = number of internships for a given student denoted by 'graduationId'
-#internships <- internships %>% group_by(graduationId) %>% mutate(count = add_tally())
+internships <- internships %>% group_by(graduationId) %>% mutate(count = add_tally())
 
 
 ```
