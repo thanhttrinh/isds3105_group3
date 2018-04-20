@@ -96,13 +96,15 @@ em <- pos %>% left_join(employ, by = 'idCurrentPosition', copy = T)
 
 sal <- em %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(salary)) %>%select(graduationId, count, salary) %>% group_by(count) %>% summarise(avgSalary = mean(salary))
 
-sal
 
 sal[is.na(sal)] <- 0
 ggplot(sal) + geom_col(aes(x=count, y=avgSalary, fill = factor(count))) + ggtitle('Average Salary by Number of Internships') + labs(x='Number of Internships', y = 'Average Salary in USD') + scale_fill_discrete(name = "Internships")
 
 difference <- sal$avgSalary[3] - sal$avgSalary[4]
+
+# difference was showing in scientific notation, this option fixes it
+options("scipen"=100, "digits"=4)
 ```
 
-As per the graphs, we can see that there is not a substantial change from having no internships to having one, but the difference between 0 to 2 or 3 is pretty large. Someone with 3 internships will make `r round(difference)` more on average, which is a `r difference/sal$avgSalary[4] * 100` % increase.
+As per the graphs, we can see that there is not a substantial change from having no internships to having one, but the difference between 0 to 2/3 is pretty large.Someone with 3 internships will make $`r round(difference)` more on average, which is a `r difference/sal$avgSalary[4] * 100`% increase.
 
