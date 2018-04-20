@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
@@ -64,7 +64,7 @@ ggplot(totalAmounts) + geom_col(aes(x = count, y = countCOUNT, fill = factor(cou
 ```
 
 
-## How does the salary differr between each amount of internships?
+## How does the salary differ between each amount of internships?
 ```{r}
 #get salary from students with internships
 curPos <- tbl(conStudent, 'currentPosition')
@@ -100,5 +100,9 @@ sal
 
 sal[is.na(sal)] <- 0
 ggplot(sal) + geom_col(aes(x=count, y=avgSalary, fill = factor(count))) + ggtitle('Average Salary by Number of Internships') + labs(x='Number of Internships', y = 'Average Salary in USD') + scale_fill_discrete(name = "Internships")
+
+difference <- sal$avgSalary[3] - sal$avgSalary[4]
 ```
+
+As per the graphs, we can see that there is not a substantial change from having no internships to having one, but the difference between 0 to 2 or 3 is pretty large. Someone with 3 internships will make `r round(difference)` more on average, which is a `r difference/sal$avgSalary[4] * 100` % increase.
 
