@@ -96,5 +96,9 @@ em <- pos %>% left_join(employ, by = 'idCurrentPosition', copy = T)
 
 sal <- em %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(salary)) %>%select(graduationId, count, salary) %>% group_by(count) %>% summarise(avgSalary = mean(salary))
 
+sal
+
+sal[is.na(sal)] <- 0
+ggplot(sal) + geom_col(aes(x=count, y=avgSalary, fill = factor(count))) + ggtitle('Average Salary by Number of Internships') + labs(x='Number of Internships', y = 'Average Salary in USD') + scale_fill_discrete(name = "Internships")
 ```
 
