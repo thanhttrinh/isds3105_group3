@@ -88,3 +88,13 @@ employment2 <- currentPos %>% left_join(employ, by = 'idCurrentPosition', copy =
 salary <- employment2 %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(salary)) %>%select(graduationId, count, salary)
 ```
 
+```{r}
+#ALL OF THEM TOGETHER
+pos <- internship_amounts %>% right_join(curPos, by = 'graduationId', copy = T) %>% select(graduationId, count, idCurrentPosition)
+
+em <- pos %>% left_join(employ, by = 'idCurrentPosition', copy = T)
+
+sal <- em %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(salary)) %>%select(graduationId, count, salary) %>% group_by(count) %>% summarise(avgSalary = mean(salary))
+
+```
+
