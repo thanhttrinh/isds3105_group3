@@ -71,12 +71,18 @@ curPos <- tbl(conStudent, 'currentPosition')
 employ <- tbl(conStudent, 'employment')
 full_time <- tbl(conStudent, 'fulltime')
 
-#holds students with AND without internships
-currentPos <- internship_amounts %>% right_join(curPos, by = 'graduationId', copy = T) %>% select(graduationId, count, idCurrentPosition)
+#holds students WITHOUT internships
+currentPos <- internship_amounts %>% right_join(curPos, by = 'graduationId', copy = T) %>% select(graduationId, count, idCurrentPosition) %>% filter(is.na(count))
 
+#holds students WITH internships
 currentPos2 <- internship_amounts %>% right_join(curPos, by = 'graduationId', copy = T) %>% select(graduationId, count, idCurrentPosition) %>% filter(!is.na(count))
 
-employment <- currentPos %>% left_join(employ, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(count))
+employment <- currentPos2 %>% left_join(employ, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(count))
 
-internSalary <- employment %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(count)) %>% select(graduationId, count, salary)
+internSalary <- employment %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(count), !is.na(salary)) %>% select(graduationId, count, salary)
 ```
+
+```{r}
+
+```
+
