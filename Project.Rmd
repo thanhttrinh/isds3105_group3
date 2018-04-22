@@ -131,7 +131,7 @@ ggplot(data = major0) +
 #Here you could see the above chart on a pie chart
 x <- c(176, 161, 1107, 402)
 labels <- c("Barely or not related, and I would prefer that it be related", "Barely or not related, but that is fine with me", "Directly related", "Somewhat related")
-pie(x, labels = labels, main = "Related to Major", col = rainbow(length(x)))
+pie(x, labels = labels, main = "Relativeness to Major", col = rainbow(length(x)))
 
 ```
 
