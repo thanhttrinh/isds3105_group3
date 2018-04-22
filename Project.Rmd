@@ -106,7 +106,7 @@ difference <- sal$avgSalary[3] - sal$avgSalary[4]
 options("scipen"=100, "digits"=4)
 ```
 
-As per the graphs, we can see that there is not a substantial change from having no internships to having one, but the difference between 0 to 2/3 is pretty large.Someone with 3 internships will make $`r round(difference)` more on average, which is a `r difference/sal$avgSalary[4] * 100`% increase.
+As per the graphs, we can see that there is not a substantial change from having no internships to having one, but the difference between 0 to 2/3 is pretty large. Someone with 3 internships will make $`r round(difference)` more on average, which is a `r difference/sal$avgSalary[4] * 100`% increase.
 
 ```{r}
 # relating to respective major
@@ -129,4 +129,5 @@ ggplot(data = major0) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
+
 
