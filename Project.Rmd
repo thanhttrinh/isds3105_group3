@@ -54,13 +54,13 @@ internships <- internships %>% filter(hourlyWage <= 45) %>% select(internshipId,
 internship_amounts <- internships %>% as.data.frame %>% group_by(graduationId) %>% summarise(count = n()) %>% arrange(graduationId)
 
 # This variable holds the amount of students with 1 internship, 2 internships, or 3 internships (2408, 630, and 141 respectively)
-totalAmounts <- internship_amounts %>% group_by(count) %>% summarise(countCOUNT=n())
+totalAmounts <- internship_amounts %>% group_by(count) %>% summarise(num_students=n())
 ```
 
 
 ## How many internships did most students have? 
 ```{r}
-ggplot(totalAmounts) + geom_col(aes(x = count, y = countCOUNT, fill = factor(count))) + ggtitle("Total Amount of Internships by Graduation") + labs(x="Number of internships", y = "Amount of Students") + scale_size(guide = "none") 
+ggplot(totalAmounts) + geom_col(aes(x = count, y = num_students, fill = factor(count))) + ggtitle("Total Amount of Internships by Graduation") + labs(x="Number of internships", y = "Amount of Students") + scale_size(guide = "none") + scale_fill_discrete(name = "Number of Internships")
 ```
 
 
@@ -109,13 +109,13 @@ options("scipen"=100, "digits"=4)
 As per the graphs, we can see that there is not a substantial change from having no internships to having one, but the difference between 0 to 2/3 is pretty large. Someone with 3 internships will make $`r round(difference)` more on average, which is a `r difference/sal$avgSalary[4] * 100`% increase.
 
 ```{r}
-# relating to respective major
+# Relating to respective major
 
 major <- em %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(salary), !is.na(relatedToMajor), !is.na(count)) %>% select(graduationId, count, salary, relatedToMajor) %>% group_by(count, relatedToMajor)
 
 ggplot(data = major) +
   geom_bar(aes(x = relatedToMajor, y = , fill = factor(count))) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + scale_fill_discrete(name = "Internships") + labs(x="Relation to Major", y="Number of Graduates")
 
 ```
 
@@ -130,10 +130,8 @@ ggplot(data = major0) +
 
 #Here you could see the above chart on a pie chart
 x <- c(176, 161, 1107, 402)
-labels <- c("Barely or not related, and I would prefer that it be related", "Barely or not related, but that is fine with me", "Directly related", "Somewhat related")
+labels <- c("Barely or not related, and I would prefer that it be related", "Barely or Not Related (but accepted)", "Directly Related", "Somewhat Related")
 pie(x, labels = labels, main = "Relativeness to Major", col = rainbow(length(x)))
 
 ```
-
-
 
