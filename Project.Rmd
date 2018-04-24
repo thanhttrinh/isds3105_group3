@@ -57,6 +57,11 @@ internship_amounts <- internships %>% as.data.frame %>% group_by(graduationId) %
 totalAmounts <- internship_amounts %>% group_by(count) %>% summarise(num_students=n())
 ```
 
+```{r}
+# How many students didn't have internships?
+noInternships <- graduates %>% right_join(internships, by = "graduationId", copy = T) %>% filter(is.na(internships)) %>% select(graduationId, internshipId)
+```
+
 
 ## How many internships did most students have? 
 ```{r}
@@ -111,6 +116,17 @@ As per the graphs, we can see that there is not a substantial change from having
 ```{r}
 # Relating to respective major
 
+majorTotal <- em %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(salary), !is.na(relatedToMajor)) %>% select(graduationId, count, salary, relatedToMajor) %>% group_by(count, relatedToMajor)
+
+majorTotal[is.na(majorTotal)] <- 0
+
+ggplot(data = majorTotal) +
+  geom_bar(aes(x = relatedToMajor, y = , fill = factor(count))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + scale_fill_discrete(name = "Internships") + labs(x="Relation to Major", y="Number of Graduates")
+```
+
+```{r}
+
 major <- em %>% left_join(full_time, by = 'idCurrentPosition', copy = T) %>% filter(!is.na(salary), !is.na(relatedToMajor), !is.na(count)) %>% select(graduationId, count, salary, relatedToMajor) %>% group_by(count, relatedToMajor)
 
 ggplot(data = major) +
@@ -127,11 +143,13 @@ major[is.na(major)] <- 0
 ggplot(data = major0) +
   geom_bar(aes(x = relatedToMajor, y = )) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + labs(x="Relation to Major", y="Number of Graduates")
+```
 
+
+```{r}
 #Here you could see the above chart on a pie chart
 x <- c(176, 161, 1107, 402)
 labels <- c("Barely or not related, and I would prefer that it be related", "Barely or Not Related (but accepted)", "Directly Related", "Somewhat Related")
 pie(x, labels = labels, main = "Relativeness to Major", col = rainbow(length(x)))
-
 ```
 
