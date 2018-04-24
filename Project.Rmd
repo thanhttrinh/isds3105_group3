@@ -1,5 +1,5 @@
 ---
-title: "Project"
+title: "Internships and Majors"
 author: "Thanh Trinh"
 date: "April 18, 2018"
 output: html_document
@@ -45,6 +45,12 @@ internships <- internships %>% left_join(graduates) %>% arrange(graduationId)
 
 We have realized that there is a large sum of "dirty" data, and will thus do some cleanup. Some hourly wages appear to be above $40-$45, which seems very unreasonable for even out of state internships in high cost-of-living states such as California. That being said, I will filter out the results greater than $40/h. 
 
+```{r}
+# How many students didn't have internships?
+
+noInternships <- graduates %>% as.data.frame %>% left_join(internships, by = 'graduationId', copy = T) %>% arrange(graduationId) %>% filter(is.na(internshipId)) %>% select(graduationId) %>% summarise(num_student = n())
+```
+
 
 ```{r}
 internships <- internships %>% filter(hourlyWage <= 45) %>% select(internshipId, jobTitle, graduationId, weeklyCompensation, hourlyWage)
@@ -56,12 +62,6 @@ internship_amounts <- internships %>% as.data.frame %>% group_by(graduationId) %
 # This variable holds the amount of students with 1 internship, 2 internships, or 3 internships (2408, 630, and 141 respectively)
 totalAmounts <- internship_amounts %>% group_by(count) %>% summarise(num_students=n())
 ```
-
-```{r}
-# How many students didn't have internships?
-noInternships <- graduates %>% right_join(internships, by = "graduationId", copy = T) %>% filter(is.na(internships)) %>% select(graduationId, internshipId)
-```
-
 
 ## How many internships did most students have? 
 ```{r}
