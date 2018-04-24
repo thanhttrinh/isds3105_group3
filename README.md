@@ -6,14 +6,14 @@ Thanh Trinh
 Buford Dean
 
 ## Research Questions  
-We are interested in which variables affect the starting salary for an initial job offer the most. We have developed the following questions that we will explore:
+-How many students had each amount of internships?
+  - i.e. how many had one internship, or two, …
+- How does the amount of internships affect starting salary?
+- What is the difference from each level?
+- How likely are you to get a job related to your major based on amount of internships?
 
-- How much does having an internship affect your starting salary
-- Does it matter if the internship is related to the respective major? / Are those that get internships more likely to choose a post grad job related to their major?
-- How much does one internship differ from many? 
 
 
-TODO: ADD SCREENSHOTS OF GRAPHS/GOOD INFORMATION WE FIND AND WHAT WE DID WITH IT. 
 
 
 Project Artifact:  
