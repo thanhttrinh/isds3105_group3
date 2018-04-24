@@ -6,7 +6,7 @@ Thanh Trinh
 Buford Dean
 
 ## Research Questions  
--How many students had each amount of internships?
+- How many students had each amount of internships?
   - i.e. how many had one internship, or two, …
 - How does the amount of internships affect starting salary?
 - What is the difference from each level?
